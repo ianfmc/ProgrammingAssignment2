@@ -6,14 +6,20 @@
 makeCachedMatrix <- function(m = matrix()) {
   cachedInverse <- NULL
 
+  ## get and set the cachedMatrix object
+  
   get <- function() m
   set <- function(y) {
     m <- y
     cachedInverse <- NULL
   }
   
+  ## get and set the inverse matrix of the cachedMatrix object
+  
   getCachedInverse <- function() cachedInverse
   setCachedInverse <- function(x) cachedInverse <<- x
+  
+  ## create the closure
   
   list( get = get,
         set = set,
@@ -36,6 +42,8 @@ cacheSolve <- function(x, ...) {
     message("Found the Cached Inverse")
     return (inverse)
   }
+  
+  ## otherwise, compute and set the inverse
   
   mat <- x$get()
   inverse <- solve(mat)
